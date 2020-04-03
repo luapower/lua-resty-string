@@ -4,13 +4,9 @@
 local ffi = require "ffi"
 local ffi_new = ffi.new
 local ffi_str = ffi.string
-local C = ffi.C
---local setmetatable = setmetatable
---local error = error
-
+local C = ffi.load(ffi.abi'win' and 'libcrypto' or 'crypto')
 
 local _M = { _VERSION = '0.12' }
-
 
 ffi.cdef[[
 int RAND_bytes(unsigned char *buf, int num);
